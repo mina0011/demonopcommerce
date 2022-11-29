@@ -23,4 +23,29 @@ public class P03_homePage {
          */
     }
 
+    public WebElement searchBox()
+    {
+        return driver.findElement(By.id("small-searchterms"));
+    }
+    public WebElement searchButton()
+    {
+        return driver.findElement(By.cssSelector("button[class=\"button-1 search-box-button\"]"));
+    }
+    public String CurrentURL()
+    {
+        return driver.getCurrentUrl();
+    }
+    public List<WebElement> productTitles()
+    {
+        return driver.findElements(By.cssSelector("h2[class=\"product-title\"]"));
+    }
+    public WebElement productPicture()
+    {
+        return driver.findElement(By.className("picture"));
+    }
+    public WebElement productSku()
+    {
+        return driver.findElement(By.cssSelector("div[class=\"sku\"]"));
+    }
+
 }
