@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static org.example.stepDefs.Hooks.driver;
 public class P03_homePage {
 
+    //Currency
     public WebElement CurrencyList()
     {
         return driver.findElement(By.id("customerCurrency"));
@@ -23,6 +25,7 @@ public class P03_homePage {
          */
     }
 
+    //Search
     public WebElement searchBox()
     {
         return driver.findElement(By.id("small-searchterms"));
@@ -46,6 +49,17 @@ public class P03_homePage {
     public WebElement productSku()
     {
         return driver.findElement(By.cssSelector("div[class=\"sku\"]"));
+    }
+
+    //Hover Categories
+    public List<WebElement> mainLinks()
+    {
+        return driver.findElements(By.xpath("//ul[@class=\"top-menu notmobile\"]/li"));
+    }
+
+    public WebElement PageTitle()
+    {
+        return driver.findElement(By.className("page-title"));
     }
 
 }
