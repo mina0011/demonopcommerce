@@ -1,7 +1,6 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -61,5 +60,17 @@ public class P03_homePage {
     {
         return driver.findElement(By.className("page-title"));
     }
+
+    //homeSliders
+    public WebElement NokiaSlider ()
+    {
+        return driver.findElement(By.xpath("//a[@href='http://demo.nopcommerce.com/'][1]"));
+    }
+    public WebElement IphoneSlider()
+    {
+        return driver.findElement(By.xpath("//a[@href='http://demo.nopcommerce.com/'][2]"));
+    }
+
+
 
 }
