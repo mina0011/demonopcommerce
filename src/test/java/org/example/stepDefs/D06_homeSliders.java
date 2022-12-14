@@ -3,13 +3,9 @@ package org.example.stepDefs;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.pages.P03_homePage;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import org.testng.Assert;
 
-import java.time.Duration;
-
-import static org.example.stepDefs.Hooks.driver;
 
 
 public class D06_homeSliders {

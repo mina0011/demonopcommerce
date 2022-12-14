@@ -71,6 +71,40 @@ public class P03_homePage {
         return driver.findElement(By.xpath("//a[@href='http://demo.nopcommerce.com/'][2]"));
     }
 
+    //followUs
+    public WebElement FaceBook()
+    {
+        return driver.findElement(By.cssSelector("a[href=\"http://www.facebook.com/nopCommerce\"]"));
+    }
+    public WebElement Twitter()
+    {
+        return driver.findElement(By.cssSelector("a[href=\"https://twitter.com/nopCommerce\"]"));
+    }
+    public WebElement RSS()
+    {
+        return driver.findElement(By.cssSelector("a[href=\"/news/rss/1\"]"));
+    }
+    public WebElement YouTube()
+    {
+        return driver.findElement(By.cssSelector("a[href=\"http://www.youtube.com/user/nopCommerce\"]"));
+    }
 
+    //Wishlist
+    public WebElement HTCWishList()
+    {
+        return driver.findElement(By.xpath("(//button[@title='Add to wishlist'])[3]"));
+    }
+    public WebElement SuccessNotification()
+    {
+        return driver.findElement(By.cssSelector("div[class=\"bar-notification success\"]"));
+    }
+    public WebElement WishListLink()
+    {
+        return driver.findElement(By.xpath("(//a[@href=\"/wishlist\"])[1]"));
+    }
+    public WebElement Quantity()
+    {
+        return driver.findElement(By.cssSelector("input[aria-label=\"Qty.\"]"));
+    }
 
 }
