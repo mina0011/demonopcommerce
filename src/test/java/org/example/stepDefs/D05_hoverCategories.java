@@ -9,8 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
+
 
 import static org.example.stepDefs.Hooks.driver;
 public class D05_hoverCategories {
@@ -43,7 +44,8 @@ public class D05_hoverCategories {
         String locator = "(//ul[@class='top-menu notmobile']//ul)["+selectedCategory+"]/li";
         subcategoryLinks = driver.findElements(By.xpath(locator));
 
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        // minimize implicit wait to not waste time if it's empty
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @Then("user can select sub category or open main category")
@@ -75,6 +77,6 @@ public class D05_hoverCategories {
             //Check that the category title is equal the one you get it while selecting random category
             Assert.assertEquals(selectedCategoryText.toLowerCase().trim(), home.PageTitle().getText().toLowerCase().trim());
         }
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 }
