@@ -15,29 +15,38 @@ import static org.example.stepDefs.Hooks.driver;
 public class D07_followUs {
 
     P03_homePage home = new P03_homePage();
-    @When("user click on facebook link")
-    public void facebookLink()
+
+    @When("user opens facebook link")
+    public void userOpensFacebookLink()
     {
+        //user open facebook page
         home.FaceBook().click();
 
+        //wait until thw no. if tabs become 2
         WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(8));
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
     }
 
-    @Then("user verify that facebook page display")
-    public void userVerifyThatFacebookPageDisplay() throws InterruptedException
+    @Then("{string} is opened in new tab")
+    public void isOpenedInNewTab(String URL) throws InterruptedException
     {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
 
+        if (!URL.contains("new-online")) {
+            //switch to tab 1
+            Hooks.driver.switchTo().window(tabs.get(1));
+            System.out.println("Tab 1 "+home.CurrentURL());
+            System.out.println(driver.getTitle());
+        } else {
+            Hooks.driver.switchTo().window(tabs.get(0));
+            System.out.println("Tab 0 "+home.CurrentURL());
+            System.out.println(driver.getTitle());
+        }
 
-        System.out.println("Tab 1 "+home.CurrentURL());
-        System.out.println(driver.getTitle());
-
-        Assert.assertEquals(home.CurrentURL() ,"https://www.facebook.com/nopCommerce" );
+        //check that the Current URL match the expected
+        Assert.assertEquals(home.CurrentURL(), URL);
 
         driver.close();
 
@@ -48,92 +57,32 @@ public class D07_followUs {
 
     }
 
-    @When("user click on twitter link")
-    public void userClickOnTwitterLink()
+    @When("user opens twitter link")
+    public void userOpensTwitterLink()
     {
+        //user open Twitter page
         home.Twitter().click();
 
+        //wait until thw no. if tabs become 2
         WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(8));
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
     }
 
-    @Then("user verify that twitter page display")
-    public void userVerifyThatTwitterPageDisplay() throws InterruptedException
+    @When("user opens rss link")
+    public void userOpensRssLink()
     {
-        Thread.sleep(2000);
-
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-
-        System.out.println("Tab 1 "+home.CurrentURL());
-        System.out.println(driver.getTitle());
-
-        Assert.assertEquals(home.CurrentURL(), "https://twitter.com/nopCommerce");
-
-        driver.close();
-        driver.switchTo().window(tabs.get(0));
-
-        System.out.println("tab 0 "+ home.CurrentURL());
-        System.out.println(driver.getTitle());
-
-    }
-
-    @When("user click on RSS link")
-    public void userClickOnRSSLink()
-    {
+        //user open rss page
         home.RSS().click();
-
-
     }
 
-    @Then("user verify that RSS page display")
-    public void userVerifyThatRSSPageDisplay() throws InterruptedException
+    @When("user opens youtube link")
+    public void userOpensYoutubeLink()
     {
-        Thread.sleep(2000);
-
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(0));
-
-        System.out.println("Tab 1 "+home.CurrentURL());
-        System.out.println(driver.getTitle());
-
-        Assert.assertEquals(home.CurrentURL(),"https://demo.nopcommerce.com/new-online-store-is-open");
-
-        driver.close();
-        driver.switchTo().window(tabs.get(0));
-
-        System.out.println("tab 0 "+ home.CurrentURL());
-        System.out.println(driver.getTitle());
-    }
-
-    @When("user click on youtube link")
-    public void userClickOnYoutubeLink()
-    {
+        //user open Youtube page
         home.YouTube().click();
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(8));
+        //wait until thw no. if tabs become 2
+        WebDriverWait wait = new WebDriverWait(driver , Duration.ofSeconds(8));
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-
-    }
-
-    @Then("user verify that youtube page display")
-    public void userVerifyThatYoutubePageDisplay() throws InterruptedException
-    {
-        Thread.sleep(2000);
-
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-
-        System.out.println("Tab 1 "+home.CurrentURL());
-        System.out.println(driver.getTitle());
-
-        Assert.assertEquals(home.CurrentURL(),"https://www.youtube.com/user/nopCommerce");
-
-        driver.close();
-        driver.switchTo().window(tabs.get(0));
-
-        System.out.println("Tab 0 "+home.CurrentURL());
-        System.out.println(driver.getTitle());
     }
 }

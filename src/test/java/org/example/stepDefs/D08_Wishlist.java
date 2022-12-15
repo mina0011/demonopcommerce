@@ -16,9 +16,10 @@ public class D08_Wishlist {
 
     P03_homePage home = new P03_homePage();
     
-    @When("user click on wishlist button HTC product")
+    @When("user select to add HTC phone to wish list")
     public void WishListButton()
     {
+        //User add HTC to Wish List
         home.HTCWishList().click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(home.SuccessNotification()));
@@ -27,18 +28,22 @@ public class D08_Wishlist {
     @Then("user see success message")
     public void userSeeSuccessMessage()
     {
+        //Assertions
         SoftAssert soft = new SoftAssert();
 
+        //check that success message being visible
         boolean successMessage = home.SuccessNotification().isDisplayed();
         soft.assertTrue(successMessage);
 
+        //check that success message contains "The product has been added to your"
         String Massage = home.SuccessNotification().getText();
         soft.assertTrue(Massage.contains("The product has been added to your"));
         System.out.println(Massage);
 
+        //check that background color of the success message is green
         String backgroundColor = home.SuccessNotification().getCssValue("background-color");
+        //convert the color from RGBA to Hex
         String ActualBackgroundColor = Color.fromString(backgroundColor).asHex();
-
         soft.assertTrue(ActualBackgroundColor.contains("#4bb07a"));
 
         soft.assertAll();
@@ -47,17 +52,21 @@ public class D08_Wishlist {
     @And("user click on Wishlist Tab")
     public void userClickOnWishlistTab()
     {
+        //waiting until success message be invisible
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(8));
         wait.until(ExpectedConditions.invisibilityOf(home.SuccessNotification()));
 
+        //user go th Wish list page
         home.WishListLink().click();
     }
 
-    @Then("Verify user product add in WishListPage")
+    @Then("user should find the product add in WishListPage")
     public void verifyUserProductAddInWishListPage()
     {
+        //Assertions
         SoftAssert soft =new SoftAssert();
 
+        //check that the quantity value of th product bigger than 0
         String quantity = home.Quantity().getAttribute("value");
         int quantityValue = Integer.parseInt(quantity);
         System.out.println(quantityValue);

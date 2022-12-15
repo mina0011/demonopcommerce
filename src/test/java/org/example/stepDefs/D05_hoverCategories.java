@@ -20,7 +20,7 @@ public class D05_hoverCategories {
     List<WebElement> subcategoryLinks;
     String selectedCategoryText;
 
-    @Given("user hover on the selected category")
+    @Given("user hover on the main category")
     public void hoverCategory() throws InterruptedException {
         Actions actions = new Actions(driver);
 
@@ -28,6 +28,7 @@ public class D05_hoverCategories {
         System.out.println("The count is "+ count);
         int min = 0;
         int max = count -1;
+        //select random category
         selectedCategory = (int)Math.floor(Math.random()*(max-min+1)+min);
         actions.moveToElement(home.mainLinks().get(selectedCategory)).perform();
         selectedCategoryText = home.mainLinks().get(selectedCategory).getText();
@@ -58,18 +59,21 @@ public class D05_hoverCategories {
             System.out.println(subcategoryLinks.get(0).getText());
             System.out.println(subcategoryLinks.get(1).getText());
             System.out.println(subcategoryLinks.get(2).getText());
+            //select random sub-category
             int selectedSubCategory = (int) Math.floor(Math.random()*(max-min+1)+min);
             String selectedSubCategoryText = subcategoryLinks.get(selectedSubCategory).getText();
             System.out.println(selectedSubCategoryText);
             subcategoryLinks.get(selectedSubCategory).click();
 
+            //Check that the sub-category title is equal the one you get it while selecting random sub-category
             Assert.assertEquals(selectedSubCategoryText.toLowerCase().trim(),home.PageTitle().getText().toLowerCase().trim());
         }
         else
         {
             home.mainLinks().get(selectedCategory-1).click();
             System.out.println(selectedCategoryText);
-            Assert.assertEquals(home.PageTitle().getText().toLowerCase().trim(),selectedCategoryText.toLowerCase().trim());
+            //Check that the category title is equal the one you get it while selecting random category
+            Assert.assertEquals(selectedCategoryText.toLowerCase().trim(), home.PageTitle().getText().toLowerCase().trim());
         }
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
     }

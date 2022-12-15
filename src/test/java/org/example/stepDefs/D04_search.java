@@ -31,7 +31,7 @@ public class D04_search {
         //Assertion
         SoftAssert soft =new SoftAssert();
 
-        // url contains https://demo.nopcommerce.com/search?q=
+        //check that the url contains https://demo.nopcommerce.com/search?q=
         soft.assertEquals(home.CurrentURL().contains("https://demo.nopcommerce.com/search?q="),true);
 
         //Count number of search results
@@ -44,6 +44,7 @@ public class D04_search {
         {
             String productTitle = home.productTitles().get(i).getText().toLowerCase();
             System.out.println(productTitle);
+            //verify each result contains the search word
             soft.assertEquals(productTitle.contains(search),true);
         }
         soft.assertAll();
@@ -72,6 +73,7 @@ public class D04_search {
         String productSku = home.productSku().getText();
         //print product sku
         System.out.println(productSku);
+        //verify that the sku shown in this page then make sure it contains the sku that you are using in search
         Assert.assertTrue(productSku.contains(search));
 
 

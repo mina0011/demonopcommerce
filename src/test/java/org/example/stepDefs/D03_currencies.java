@@ -28,6 +28,7 @@ public class D03_currencies {
             String price = home.prices().get(i).getText();
             System.out.println(i);
             System.out.println(price);
+            //verify that the variable contains "€"
             Assert.assertTrue(price.contains("€"));
         }
     }
