@@ -66,7 +66,7 @@ public class D08_Wishlist {
         //Assertions
         SoftAssert soft =new SoftAssert();
 
-        //check that the quantity value of th product bigger than 0
+        //check that the quantity value of the product is bigger than 0
         String quantity = home.Quantity().getAttribute("value");
         int quantityValue = Integer.parseInt(quantity);
         System.out.println(quantityValue);
