@@ -64,11 +64,11 @@ public class P03_homePage {
     //homeSliders
     public WebElement NokiaSlider ()
     {
-        return driver.findElement(By.xpath("//a[@href='http://demo.nopcommerce.com/'][1]"));
+        return driver.findElement(By.xpath("(//a[@href=\"https://demo.nopcommerce.com/\"])[1]"));
     }
     public WebElement IphoneSlider()
     {
-        return driver.findElement(By.xpath("//a[@href='http://demo.nopcommerce.com/'][2]"));
+        return driver.findElement(By.xpath("(//a[@href=\"https://demo.nopcommerce.com/\"])[2]"));
     }
 
     //followUs
